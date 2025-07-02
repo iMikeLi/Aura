@@ -5,3 +5,6 @@ Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab,
 
 
 Im Behavior Tree der Enemys denken Range attacker manchmal sie sind Nahkämpfer, wenn man zu nah am Enemy steht.
+
+
+GA_RangedAttack update face target vielleicht noch gleich GA_MeleeAttack setzen mit "Set Timer by Function Name"

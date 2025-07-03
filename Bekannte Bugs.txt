@@ -5,6 +5,8 @@ Aura will unbedingt bei mausklick zum Zielort und lässt sich bei wasd movement 
 
 Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab, obwohl der BT stoppt.
 
+Enemy_Goblin_Slingshot addiert nach jedem schuss seinen schaden (erster schuss 10dmg, zweiter 20, dritter 30...).
+
 
 Im Behavior Tree der Enemys denken Range attacker manchmal sie sind Nahkämpfer, wenn man zu nah am Enemy steht.
 

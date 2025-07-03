@@ -3,8 +3,7 @@ Aura Feuerball wird manchmal nicht gecastet, vermutlich weil dann die Animation 
 Aura will unbedingt bei mausklick zum Zielort und lässt sich bei wasd movement nicht davon unterbrechen.
 
 
-Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab, obwohl der BT stoppt.
-
+Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab, obwohl der BT stoppt. (Vllt wurde das gefixxt wegen End Ability bei GA_RangedAttack setzen)
 
 
 Im Behavior Tree der Enemys denken Range attacker manchmal sie sind Nahkämpfer, wenn man zu nah am Enemy steht.

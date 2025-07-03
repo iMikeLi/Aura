@@ -1,5 +1,7 @@
 Aura Feuerball wird manchmal nicht gecastet, vermutlich weil dann die Animation das Event nicht auslöst.
 
+Aura will unbedingt bei mausklick zum Zielort und lässt sich bei wasd movement nicht davon unterbrechen.
+
 
 Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab, obwohl der BT stoppt.
 

@@ -7,3 +7,16 @@ Enemy_Shaman feuert nach Tod manchmal trotzdem noch einen Feuerbal aus dem Stab,
 
 
 Im Behavior Tree der Enemys denken Range attacker manchmal sie sind Nahkämpfer, wenn man zu nah am Enemy steht.
+
+
+
+
+
+
+
+
+
+
+
+Notizen
+Video 214 Zeigt gut, wie man neue Enemys erstellt.

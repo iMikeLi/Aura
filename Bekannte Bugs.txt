@@ -10,6 +10,9 @@ Im Behavior Tree der Enemys denken Range attacker manchmal sie sind Nahkämpfer,
 
 
 
+Projektile fliegen durch den boden oder in die luft, deshalb in Z achse locken mit "Constrain to Plane" "Plane Constraint Axis Setting = Z" in Blueprint, oder einen weg in c++ (AuraProjectile) finden.
+
+BP_Feuerball despawnt nicht von selbst?
 
 
 

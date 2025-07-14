@@ -14,6 +14,8 @@ Projektile fliegen durch den boden oder in die luft, deshalb in Z achse locken m
 
 BP_Feuerball despawnt nicht von selbst?
 
+Bei doppeltem levelup gibt es nur einen skillpunkt statt zwei.
+
 
 
 

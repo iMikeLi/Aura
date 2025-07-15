@@ -18,6 +18,7 @@ Bei doppeltem levelup gibt es nur einen skillpunkt statt zwei.
 
 WBP_Overlay im eventgraph sind die "Set Position in Viewport" nicht gut um menüs an der richtigen stelle aufzurufen, sodass es sich auch an den jeweiligen Bildschirm anpasst.
 
+Mit WASD bewegen und ein Menü öffnen erzeugt ein dauerrun bis man das menü wieder schließt und die Bewegungstaste (WASD) wieder drückt.
 
 
 

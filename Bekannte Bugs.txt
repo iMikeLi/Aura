@@ -16,6 +16,8 @@ BP_Feuerball despawnt nicht von selbst?
 
 Bei doppeltem levelup gibt es nur einen skillpunkt statt zwei.
 
+WBP_Overlay im eventgraph sind die "Set Position in Viewport" nicht gut um menüs an der richtigen stelle aufzurufen, sodass es sich auch an den jeweiligen Bildschirm anpasst.
+
 
 
 

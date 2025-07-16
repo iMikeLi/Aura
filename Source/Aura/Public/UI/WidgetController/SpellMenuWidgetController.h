@@ -10,6 +10,8 @@
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled);
 
+struct FGameplayTag;
+
 struct FSelectedAbility
 {
 	FGameplayTag Ability = FGameplayTag();
@@ -36,6 +38,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void SpellGlobeSelected(const FGameplayTag& AbilityTag);
+
+	UFUNCTION(BlueprintCallable)
+	void SpendPointButtonPressed(const FGameplayTag& AbilityTag);
 
 private:
 

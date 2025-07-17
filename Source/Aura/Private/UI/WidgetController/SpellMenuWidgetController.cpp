@@ -24,11 +24,12 @@ void USpellMenuWidgetController::BindCallbacksToDependencies()
 				bool bEnableSpendPoints = false;
 				bool bEnableEquip = false;
 				ShouldEnableButtons(StatusTag, CurrentSpellPoints, bEnableSpendPoints, bEnableEquip);
-				FString Description;
+				FString DecriptionPure;
+				FString ActualLevelDescription;
 				FString NextLevelDescription;
-				GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, Description, NextLevelDescription);
+				GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, DecriptionPure, ActualLevelDescription, NextLevelDescription);
 				SpellGlobeSelectedDelegate.Broadcast(bEnableSpendPoints, bEnableEquip);
-				DescriptionChangedDelegate.Broadcast(Description, NextLevelDescription);
+				DescriptionChangedDelegate.Broadcast(DecriptionPure, ActualLevelDescription, NextLevelDescription);
 			}
 
 			if (AbilityInfo)
@@ -75,11 +76,12 @@ void USpellMenuWidgetController::SpellGlobeSelected(const FGameplayTag& AbilityT
 	bool bEnableSpendPoints = false;
 	bool bEnableEquip = false;
 	ShouldEnableButtons(AbilityStatus, SpellPoints, bEnableSpendPoints, bEnableEquip);
-	FString Description;
+	FString DecriptionPure;
+	FString ActualLevelDescription;
 	FString NextLevelDescription;
-	GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, Description, NextLevelDescription);
+	GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, DecriptionPure, ActualLevelDescription, NextLevelDescription);
 	SpellGlobeSelectedDelegate.Broadcast(bEnableSpendPoints, bEnableEquip);
-	DescriptionChangedDelegate.Broadcast(Description, NextLevelDescription);
+	DescriptionChangedDelegate.Broadcast(DecriptionPure, ActualLevelDescription, NextLevelDescription);
 }
 
 void USpellMenuWidgetController::SpendPointButtonPressed(const FGameplayTag& AbilityTag)
@@ -108,10 +110,11 @@ void USpellMenuWidgetController::UpdateDescriptionFromSelectedSkill(const FGamep
 		AbilityStatus = GetAuraASC()->GetStatusFromSpec(*AbilitySpec);
 	}
 
-	FString Description;
+	FString DecriptionPure;
+	FString ActualLevelDescription;
 	FString NextLevelDescription;
-	GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, Description, NextLevelDescription);
-	DescriptionChangedDelegate.Broadcast(Description, NextLevelDescription);
+	GetAuraASC()->GetDescriptionsByAbilityTag(AbilityTag, DecriptionPure, ActualLevelDescription, NextLevelDescription);
+	DescriptionChangedDelegate.Broadcast(DecriptionPure, ActualLevelDescription, NextLevelDescription);
 
 }
 

@@ -9,7 +9,7 @@
 #include "SpellMenuWidgetController.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled);
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FDescriptionChangedSignature, FString, DescriptionString, FString, NextLevelDescriptionString);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_ThreeParams(FDescriptionChangedSignature, FString, DescriptionPureString, FString, ActualLevelDescriptionString, FString, NextLevelDescriptionString);
 
 struct FGameplayTag;
 

@@ -8,7 +8,9 @@
 #include "GameplayTagContainer.h"
 #include "SpellMenuWidgetController.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_FourParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled, FString, DescriptionString, FString, NextLevelDescriptionString);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FSpellGlobeSelectedSignature, bool, bSpendPointsButtonEnabled, bool, bEquipButtonEnabled);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FDescriptionChangedSignature, FString, DescriptionString, FString, NextLevelDescriptionString);
+
 struct FGameplayTag;
 
 struct FSelectedAbility
@@ -35,11 +37,17 @@ public:
 	UPROPERTY(BlueprintAssignable)
 	FSpellGlobeSelectedSignature SpellGlobeSelectedDelegate;
 
+	UPROPERTY(BlueprintAssignable)
+	FDescriptionChangedSignature DescriptionChangedDelegate;
+
 	UFUNCTION(BlueprintCallable)
 	void SpellGlobeSelected(const FGameplayTag& AbilityTag);
 
 	UFUNCTION(BlueprintCallable)
 	void SpendPointButtonPressed(const FGameplayTag& AbilityTag);
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateDescriptionFromSelectedSkill(const FGameplayTag& AbilityTag);
 
 private:
 

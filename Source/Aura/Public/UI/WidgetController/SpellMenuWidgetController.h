@@ -49,6 +49,9 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateDescriptionFromSelectedSkill(const FGameplayTag& AbilityTag);
 
+	UFUNCTION(BlueprintCallable)
+	void GlobeDeselect();
+
 private:
 
 	static void ShouldEnableButtons(const FGameplayTag& AbilityStatus, int32 SpellPoints, bool& bShouldEnableSpellPointsButton, bool& bShouldEnableEquipButton);

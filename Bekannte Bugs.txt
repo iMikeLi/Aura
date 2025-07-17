@@ -22,6 +22,7 @@ WBP_Overlay im eventgraph sind die "Set Position in Viewport" nicht gut um menü
 
 Mit WASD bewegen und ein Menü öffnen erzeugt ein dauerrun bis man das menü wieder schließt und die Bewegungstaste (WASD) wieder drückt.
 
+SpellMenu, wenn geöffnet und Level up geschieht bei ausgewählter ability, und spell Point erhöht sich von 1 auf 2, dann wird der spend und equip button ausgegraut.
 
 
 

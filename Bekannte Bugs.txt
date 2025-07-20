@@ -22,6 +22,8 @@ WBP_Overlay im eventgraph sind die "Set Position in Viewport" nicht gut um menü
 
 Mit WASD bewegen und ein Menü öffnen erzeugt ein dauerrun bis man das menü wieder schließt und die Bewegungstaste (WASD) wieder drückt.
 
+Ghoul fliegt viel weiter als Goblin bei selbem Death Impulse Magnitude.
+
 
 
 

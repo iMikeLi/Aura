@@ -26,4 +26,5 @@ Mit WASD bewegen und ein Menü öffnen erzeugt ein dauerrun bis man das menü wi
 
 
 Notizen
-Video 214 Zeigt gut, wie man neue Enemys erstellt.
+Video 214 zeigt gut, wie man neue Enemys erstellt.
+Video 312 zeigt gut, wie mann neue Werte für DamageAbilities anlegt (wie z.B. "Death Impulse Magnitude")

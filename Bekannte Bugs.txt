@@ -24,6 +24,8 @@ Mit WASD bewegen und ein Menü öffnen erzeugt ein dauerrun bis man das menü wi
 
 Ghoul fliegt viel weiter als Goblin bei selbem Death Impulse Magnitude.
 
+Knockback wird nicht ausgelöst, wenn enemy sich auf aura zubewegt.
+
 
 
 

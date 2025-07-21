@@ -6,7 +6,6 @@
 #include "Actor/AuraProjectile.h"
 #include "Interaction/CombatInterface.h"
 #include "AbilitySystemComponent.h"
-#include "AuraGameplayTags.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 

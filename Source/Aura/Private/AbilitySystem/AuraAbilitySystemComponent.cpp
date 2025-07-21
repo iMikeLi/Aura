@@ -44,6 +44,40 @@ void UAuraAbilitySystemComponent::AddCharacterPassiveAbilities(const TArray<TSub
 	}
 }
 
+void UAuraAbilitySystemComponent::AbilityInputTagPressed(const FGameplayTag& InputTag)
+{
+	if (!InputTag.IsValid()) return;
+
+	// Lock für Thread-Sicherheit (optional, aber empfohlen)
+	FScopedAbilityListLock ScopedAbilityListLock(*this);
+
+	for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
+	{
+		// NEU: Veraltetes Property ersetzt!
+		if (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag))
+		{
+			AbilitySpecInputPressed(AbilitySpec);
+
+			// InstancedPerActor: (wie gehabt)
+			if (AbilitySpec.IsActive())
+			{
+				UGameplayAbility* PrimaryInstance = AbilitySpec.GetPrimaryInstance();
+				if (PrimaryInstance)
+				{
+					InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputPressed, AbilitySpec.Handle, PrimaryInstance->GetCurrentActivationInfo().GetActivationPredictionKey());
+				}
+			}
+
+			// InstancedPerExecution: (nur falls du solche Abilities hast)
+			TArray<UGameplayAbility*> AbilityInstances = AbilitySpec.GetAbilityInstances();
+			for (UGameplayAbility* AbilityInstance : AbilityInstances)
+			{
+				InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputPressed, AbilitySpec.Handle, AbilityInstance->GetCurrentActivationInfo().GetActivationPredictionKey());
+			}
+		}
+	}
+}
+
 void UAuraAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag)
 {
 	if (!InputTag.IsValid()) return;
@@ -60,19 +94,36 @@ void UAuraAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputT
 			}
 		}
 	}
-
 }
 
 void UAuraAbilitySystemComponent::AbilityInputTagReleased(const FGameplayTag& InputTag)
 {
 	if (!InputTag.IsValid()) return;
 
+	// Lock the ActivatableAbilities container until the for loop is done.
+	FScopedAbilityListLock ScopedAbilityListLock(*this);
 	for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
 	{
-		FGameplayTagContainer& DynamicTags = AbilitySpec.GetDynamicSpecSourceTags();
-		if (DynamicTags.HasTagExact(InputTag)) 
+		if (AbilitySpec.GetDynamicSpecSourceTags().HasTagExact(InputTag))
 		{
 			AbilitySpecInputReleased(AbilitySpec);
+
+			if (AbilitySpec.IsActive())
+			{
+				// NOTE: GetPrimaryInstance() is only valid on InstancedPerActor abilities.
+				UGameplayAbility* PrimaryInstance = AbilitySpec.GetPrimaryInstance();
+				if (PrimaryInstance)
+				{
+					InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputReleased, AbilitySpec.Handle, PrimaryInstance->GetCurrentActivationInfo().GetActivationPredictionKey());
+				}
+			}
+
+			// Falls du InstancedPerExecution verwendest:
+			TArray<UGameplayAbility*> AbilityInstances = AbilitySpec.GetAbilityInstances();
+			for (UGameplayAbility* AbilityInstance : AbilityInstances)
+			{
+				InvokeReplicatedEvent(EAbilityGenericReplicatedEvent::InputReleased, AbilitySpec.Handle, AbilityInstance->GetCurrentActivationInfo().GetActivationPredictionKey());
+			}
 		}
 	}
 }

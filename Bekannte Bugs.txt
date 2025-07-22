@@ -26,6 +26,8 @@ Ghoul fliegt viel weiter als Goblin bei selbem Death Impulse Magnitude.
 
 Knockback wird nicht ausgelöst, wenn enemy sich auf aura zubewegt.
 
+Von Video 330 auf 331, elektrocute multiplayer Fähigkeit trifft als weitere Gegner auch den aura Character des Mitspielers.
+
 
 
 

@@ -196,7 +196,7 @@ void UAuraAttributeSet::HandleIncomingDamage(const FEffectProperties& Props)
 	}
 }
 
-void UAuraAttributeSet::Debuff(const FEffectProperties & Props)
+void UAuraAttributeSet::Debuff(const FEffectProperties& Props)
 {
 	const FAuraGameplayTags& GameplayTags = FAuraGameplayTags::Get();
 	FGameplayEffectContextHandle EffectContext = Props.SourceASC->MakeEffectContext();
@@ -214,11 +214,29 @@ void UAuraAttributeSet::Debuff(const FEffectProperties & Props)
 	Effect->Period = DebuffFrequency;
 	Effect->DurationMagnitude = FScalableFloat(DebuffDuration);
 
-	FInheritedTagContainer TagContainer = FInheritedTagContainer();
+	// Tag Handling für UE 5.5+
+	FInheritedTagContainer InheritedTagContainer = FInheritedTagContainer();
 	UTargetTagsGameplayEffectComponent& Component = Effect->FindOrAddComponent<UTargetTagsGameplayEffectComponent>();
-	TagContainer.Added.AddTag(GameplayTags.DamageTypesToDebuffs[DamageType]);
-	TagContainer.CombinedTags.AddTag(GameplayTags.DamageTypesToDebuffs[DamageType]);
-	Component.SetAndApplyTargetTagChanges(TagContainer);
+
+	const FGameplayTag DebuffTag = GameplayTags.DamageTypesToDebuffs[DamageType];
+	InheritedTagContainer.Added.AddTag(DebuffTag);
+	InheritedTagContainer.CombinedTags.AddTag(DebuffTag);
+
+	// Zusätzliche Blocker-Tags bei Stun
+	if (DebuffTag.MatchesTagExact(GameplayTags.Debuff_Stun))
+	{
+		InheritedTagContainer.Added.AddTag(GameplayTags.Player_Block_CursorTrace);
+		InheritedTagContainer.Added.AddTag(GameplayTags.Player_Block_InputHeld);
+		InheritedTagContainer.Added.AddTag(GameplayTags.Player_Block_InputPressed);
+		InheritedTagContainer.Added.AddTag(GameplayTags.Player_Block_InputReleased);
+
+		InheritedTagContainer.CombinedTags.AddTag(GameplayTags.Player_Block_CursorTrace);
+		InheritedTagContainer.CombinedTags.AddTag(GameplayTags.Player_Block_InputHeld);
+		InheritedTagContainer.CombinedTags.AddTag(GameplayTags.Player_Block_InputPressed);
+		InheritedTagContainer.CombinedTags.AddTag(GameplayTags.Player_Block_InputReleased);
+	}
+
+	Component.SetAndApplyTargetTagChanges(InheritedTagContainer);
 
 	Effect->StackingType = EGameplayEffectStackingType::AggregateBySource;
 	Effect->StackLimitCount = 1;
